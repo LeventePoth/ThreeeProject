@@ -1,6 +1,19 @@
-plugins {
-    id 'java'
+buildscript {
+    ext {
+        springBootVersion = '2.0.4.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 group 'ThreeeFoodProject'
 version '1.0-SNAPSHOT'
@@ -12,5 +25,27 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.security:spring-security-jwt:1.0.7.RELEASE')
+    compile('io.jsonwebtoken:jjwt:0.7.0')
+    compile('javax.xml.bind:jaxb-api:2.2.4')
+    compile('com.mashape.unirest:unirest-java:1.4.9')
+    compile('org.apache.httpcomponents:httpclient:4.3.6')
+    compile('org.apache.httpcomponents:httpasyncclient:4.0.2')
+    compile('org.apache.httpcomponents:httpmime:4.3.6')
+    compile('org.json:json:20140107')
+    compile('com.sun.jersey:jersey-client:1.8')
+    compile('net.sargue:mailgun:1.9.0')
+    compile('org.apache.httpcomponents:httpmime:4.5.6')
+    compile('com.sun.jersey.contribs:jersey-multipart:1.9.1')
+    compile("com.h2database:h2")
+    compileOnly('org.projectlombok:lombok')
+    runtime('org.springframework.boot:spring-boot-devtools')
+    runtime('mysql:mysql-connector-java')
+    testCompile('junit:junit:4.11')
+    testCompile('commons-io:commons-io:2.4')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
