@@ -1,0 +1,68 @@
+header .element {
+    color: #56C28D;
+    border: #56C28D;
+    border-width: 5px;
+    margin-left: 5px;
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+header .element:hover {
+    color: #088A08;
+    border: #56C28D;
+    border-width: 5px;
+    text-decoration: none;
+}
+
+header .dropdown{
+    margin-right: 15px;
+    margin-left: 8px;
+}
+
+header .dropdown-menu {
+    border-width: 2px;
+    top: 84%;
+}
+
+header .dropdown-toggle{
+    min-width: 10rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+header .dropdown-toggle::after {
+    align-self: center;
+}
+
+header .user-profile-container {
+    min-width: 40px;
+    display: flex;
+    float: right;
+}
+
+header .header-img {
+    border-radius: 50%;
+    height: 40px;
+}
+
+header .navbar-brand {
+    padding-left: 3px;
+    color: white;
+}
+
+header .user-img {
+    height: 40px;
+    border-radius: 50%;
+    margin: auto;
+    display: block;
+    float: left;
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,28 @@
+/* kosĂĄr */
+
+#header_basket {
+    display: block;
+    float: left;
+    width: 130px;
+    height: 45px;
+    background: url('../images/header_basket_bg.png') no-repeat right center;
+    text-decoration: none;
+}
+
+#header_basket_ammount {
+    float: right;
+    width: 31px;
+    height: 31px;
+    font: bold 14px/26px "Trebuchet MS";
+    color: #FFFFFF;
+    background: url('../images/header_basket_ammount_bg.png');
+    padding: 0px 2px 0px 0px;
+    margin: 5px 24px 0px 5px;
+    text-align: center;
+}
+
+#header_basket_price {
+    float: right;
+    font: bold 16px/45px "Trebuchet MS";
+    color: #e51b14;
+}

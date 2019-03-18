@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="food-ticket" th:fragment="foodTile(food)">
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="row">
+            <div class="menu-item">
+                <h3 class="menu-title" th:text="${food.foodName}"></h3>
+                <p class="menu-about" th:text="${food.ingredients}"></p>
+
+                <div class="menu-system">
+                    <div class="half">
+                        <p class="per-head">
+                            <span><i class="fa fa-user"></i></span>1:1
+                        </p>
+                    </div>
+                    <div class="half">
+                        <p class="price" th:text="${food.price}"></p>
+                    </div>
+                </div>
+            </div>
+            <p>
+            <form action="/rendeles/kosar" method="post" class="ujrendeles">
+            <input type="hidden" name="id" th:value="${food.id}">
+            <button style="padding: 6px 50px;" type="submit" class="btn btn-primary btn-sm"> <!--th:onclick="'loadBasket(\'' + ${food.id} + '\');return(false);'"-->
+                <span style="font-size: 18px;" class="glyphicon glyphicon-shopping-cart"></span>
+
+            </button>
+            <!--<button type="submit" name="id" class="btn btn-info btn-lg" data-toggle="modal"
+            th:value="${food.id}" data-target="#myModal">Open Large Modal</button>
+
+             <!--th:onclick="'loadBasket(\'' + ${food.id} + '\');return(false);'"-->
+
+            </form>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        // Show the Modal on load
+        $("#myModal").modal("show");
+    });
+</script>
+
+</body>
+</html>

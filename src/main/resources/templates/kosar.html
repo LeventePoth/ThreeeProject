@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="shortcut icon" href="images/star.png" type="favicon/ico" /> -->
+
+    <title>Mamma's Kitchen</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/owl.theme.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/flexslider.css">
+    <link rel="stylesheet" href="css/pricing.css">
+    <link rel="stylesheet" href="css/main.css">
+    <!--<link rel="stylesheet" type="text/css" href="css/pizzaforte.css" />-->
+
+
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.flexslider.min.js"></script>
+    <script type="text/javascript">
+        $(window).load(function() {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                controlsContainer: ".flexslider-container"
+            });
+        });
+    </script>
+    <!--
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/popup.js"></script>
+        <script type="text/javascript">
+            var orderStickerPage = 0;
+
+            function slideOrderSticker(direction) {
+                if(direction == "next" && orderStickerPage < $("#orders_sticker_list_content TABLE").length-1) {
+                    orderStickerPage++;
+                }
+                if(direction == "prev" && orderStickerPage > 0) {
+                    orderStickerPage--;
+                }
+                $('#orders_sticker_list_container').animate({scrollLeft:(orderStickerPage*324)},500);
+            }
+
+            function loadBasket(prodid,ontet) {
+                appendlf='';
+                if (  ($(prodid).length > 0 ) || ($("input[name='lactosefree"+prodid+"']").length > 0 && $("input[name='lactosefree"+prodid+"']").attr('checked'))     ){
+                    appendlf = '&lfree=1';
+                }
+                appendval='';
+                if (  $("#valentine"+prodid).length > 0 && $("#valentine"+prodid).attr('checked')     ){
+                    appendval = '&heart=1';
+                }
+                if ( $("input[name='valentine"+prodid+"']").length > 0 && $("input[name='valentine"+prodid+"']").attr('checked')     ){
+                    appendval = '&heart=1';
+
+    //                  alert('A szív alakú pizza csak 32cm-es klasszikus tésztával elérhető.');
+    //                  return false;
+                }
+
+                if (ontet > 0){
+                    $('#header_basket').load('kosar.php?prodid=' + prodid + '&ontet='+ ontet +'&proddb=1');
+                } else {
+                    $('#header_basket').load('kosar.php?prodid=' + prodid + '&proddb=1' + appendlf + appendval);
+                }
+                $('html, body').animate({scrollTop:0}, 'slow');
+                $('#orders_sticker').show();
+            }
+            function addtoBasket(osid) {
+                if (osid > 0){
+                    $('#header_basket').load('kosar.php?addid=' + osid );
+                }
+            }
+            function removeBasket(osid) {
+                if (osid > 0){
+                    $('#header_basket').load('kosar.php?delid=' + osid );
+                }
+            }
+            function reOrder(reid) {
+                if (reid > 0){
+                    hidePopup();
+                    $('#orders_sticker').load('sticker.php');
+                    $('html, body').animate({scrollTop:0}, 'slow');
+                    $('#header_basket').load('kosar.php?reorder=' + reid);
+                    $('#orders_sticker').show();
+                }
+            }
+        </script> -->
+
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script>
+        function initialize() {
+            var mapCanvas = document.getElementById('map-canvas');
+            var mapOptions = {
+                center: new google.maps.LatLng(24.909439, 91.833800),
+                zoom: 16,
+                scrollwheel: false,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            var map = new google.maps.Map(mapCanvas, mapOptions)
+
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(24.909439, 91.833800),
+                title:"Mamma's Kitchen Restaurant"
+            });
+
+            // To add the marker to the map, call setMap();
+            marker.setMap(map);
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+
+</head>
+
+<body data-spy="scroll" data-target="#template-navbar">
+
+<nav class="navbar navbar-default custom-navbar-default custom-navbar-default-levi navbar-fixed-top fixed-top-2"; style="background: blue; box-shadow: none;
+ z-index: 1">
+    <!--<img id="logo3" src="images/Logo_main.png" class="logo img-responsive" align="right">
+    <span style="float: right;" th:text="${orderdto.totalFoodPrice}"></span>
+    <span style="float: right;" th:text="${orderdto.totalAmount}"></span>-->
+    <div class="container2 container3 container4"style="background-color: #c9302c">
+    </div>
+
+    <div style="position: relative;">
+        <img id="logo3" src="images/kosar.jpg" class="logo img-responsive" align="right" width="325px">
+        <table class="orders_sticker_list" style="
+    position: absolute;
+    top: 43px;
+    right: 30px;
+    width: 367px;
+    height: 195px;
+    background-size: cover;
+    background-image: url('static/images/1.jpg');
+    padding: 5px 5px 5px 9px;
+    z-index: 99999;">
+            <tr>
+                <th style="width: 19px">
+                </th>
+                <th style="width: 65px">
+                </th>
+                <th style="width: 97px; text-align: left">
+                    TERMÉK
+                </th>
+                <th style="width: 55px;">
+                    MENNYISÉG
+                </th>
+                <th style="width: 52px;">
+                    ÁR
+                </th>
+                <th style="width: 55px;" th:text="${orderdto.totalFoodPrice}"></th>
+                <th style="width: 55px;" th:text="${orderdto.totalAmount}"></th>
+            </tr>
+        </table>
+        <!--<a class="navbar-brand" href="#">
+            <img id="logo2" src="images/Logo_main.png" class="logo img-responsive">
+        </a>
+        <!--style="background-image: url('static/images/kosar.jpg')"
+        <!--<img id="logo2" src="images/kosar.jpg" class="logo img-responsive"><!-- Brand and toggle get grouped for better mobile display -->
+    </div>
+    <!-- /.row -->
+    <!-- <div>
+     <span style="float: right; margin-bottom: 0px;" th:text="${orderdto.totalFoodPrice}"></span>
+     <span th:text="${orderdto.totalAmount}"></span>
+     </div>
+     <div>
+     <span style="float: right; margin-bottom: 0px;" th:text="${orderdto.totalFoodPrice}"></span>
+     <span th:text="${orderdto.totalAmount}"></span>
+     </div>-->
+
+</nav>
+
+<!--== 4. Navigation ==-->
+<nav id="template-navbar" class="navbar navbar-default custom-navbar-default navbar-fixed-top" style="z-index: 3">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#Food-fair-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img id="logo" src="images/Logo_main.png" class="logo img-responsive">
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <form  action="/rendeles" method="post">
+            <div class="navbar-form navbar-right">
+                <ul class="collapse navbar-collapse" id="Food-fair-toggle">
+                    <a style="float: left; margin-top:-7.5px; margin-right: 7.5px; font-size:125%;" class="levi-anchor" > Email: </a>
+                    <input style="float: left" type="email" class="form-control" id="email" name="email">
+
+                    <a style="float: left; margin-top:-7.5px; margin-right: 7.5px; font-size:125%;" class="levi-anchor" > Password: </a>
+                    <input style="float: left" type="password" class="form-control" id="password" name="password">
+
+                    <button style="float: left;  margin-top: 0px;" type="login" class="btn btn-default">login</button>
+                    <a style="float: left;  margin-top: 15px;" href="/registration" class="registration">Click here to register.</a>
+                </ul>
+            </div>
+        </form>
+        <form action="/kosar" method="get">
+            <li><a href="/kosar">kosár</a></li>
+        </form>
+        <p style="float: right; margin-bottom: 0px;" th:text="${error}"></p>
+        <!-- /.navbar-collapse -->
+    </div><!-- /.row -->
+</nav>
+
+<!--== 13. Menu List ==-->
+<section id="menu-list" class="menu-list" style="position: relative; z-index: 2">
+    <div class="container">
+        <div class="row menu">
+            <div class="col-md-offset-1 col-md-8 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-12">
+                <div class="row">
+                    <div class="col-md-10 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="menu-catagory">
+                                <h2 th:text="${fooddto.foodTitle}"></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div th:each="food : ${fooddto.foods}">
+                        <div th:replace="fragmentss :: foodTile(
+                            food=${food})"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="menu-catagory">
+                                <h2 th:text="${fooddto.foodTitle1}"></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div th:each="food : ${fooddto.foods1}">
+                        <div th:replace="fragmentss :: foodTile(
+                            food=${food})"></div>
+                    </div>
+                </div>
+
+
+
+                <div id="moreMenuContent"></div>
+                <div class="text-center">
+                    <a id="loadMenuContent" class="btn btn-middle hidden-sm hidden-xs">Load More <span class="caret"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="js/bootstrap.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
+<script src="js/wow.min.js"></script>
+<script src="js/jquery.validate.js"></script>
+<script type="text/javascript" src="js/jquery.hoverdir.js"></script>
+<script type="text/javascript" src="js/jQuery.scrollSpeed.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<tr th:each="name : ${name}">
+    <div th:text="${name.price}"></div>
+    <div th:text="${name.foodType}"></div>
+</tr>
+   <!-- <header th:replace="fragments.html :: header"> </header>-->
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of apprentices</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="/css/header.css" rel="stylesheet">
+</head>
+<body>
+<div th:insert="fragments :: header(user = ${sessionUser})"></div>
+<div>
+    <form action="/apprentices" method="get">
+        <div class="filter-options">
+            <div>
+                <a class="btn btn-primary" role="button" data-toggle="collapse" href="#names" aria-expanded="false"
+                   aria-controls="names">
+                    Search by name
+                </a>
+                <div class="collapse" id="names" th:classappend="${apprenticesdto.name != null &&
+                                                               apprenticesdto.name != ''} ? show : hide">
+                    <input  type="text" name="name" id="name" th:value="${apprenticesdto.name}" placeholder="name"
+                            onchange="this.form.submit();">
+                </div>
+            </div>
+            <div>
+                <a class="btn btn-primary" role="button" data-toggle="collapse"
+                   href="#locations" aria-expanded="false" aria-controls="locations">
+                    Location
+                </a>
+                <div class="collapse" id="locations" th:classappend="${apprenticesdto.locations != null} ? show : hide">
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" name="location" id="budapest" value="budapest"
+                               th:checked="${apprenticesdto.locations != null &&
+                           #arrays.contains(apprenticesdto.locations, 'budapest')}"
+                               onclick="this.form.submit();">
+                        <label class="custom-control-label" for="budapest">Budapest</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" name="location" id="prague" value="prague"
+                               th:checked="${apprenticesdto.locations != null &&
+                           #arrays.contains(apprenticesdto.locations, 'prague')}"
+                               onclick="this.form.submit();">
+                        <label class="custom-control-label" for="prague">Prague</label>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a class="btn btn-primary" role="button" data-toggle="collapse" href="#languagess"
+                   aria-expanded="false" aria-controls="languagess">
+                    Spoken Languages
+                </a>
+                <div class="collapse" id="languagess" th:classappend="${apprenticesdto.spokenLanguages != null} ? show : hide">
+                    <div th:each="language, stat : ${languages}">
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" name="spokenLanguage"
+                                   th:id="${language.name}" th:value="${language.name}"
+                                   th:checked="${apprenticesdto.spokenLanguages != null &&
+                                   #arrays.contains(apprenticesdto.spokenLanguages, language.name)}"
+                                   onclick="this.form.submit();">
+                            <label class="custom-control-label" th:for="${language.name}" th:text="${language.name}">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a class="btn btn-primary" role="button" data-toggle="collapse" href="#availability"
+                   aria-expanded="false" aria-controls="collapseExample">
+                    Availability
+                </a>
+                <div class="collapse" th:classappend="${apprenticesdto.availability != null} ? show : hide" id="availability">
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" type="radio" name="availability" id="immediately"
+                               value="immediately" th:checked="${apprenticesdto.availability == 'immediately'}"
+                               onclick="this.form.submit();">
+                        <label class="custom-control-label" for="immediately">Immediately</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" type="radio" name="availability" id="1week"
+                               value="1week" th:checked="${apprenticesdto.availability == '1week'}"
+                               onclick="this.form.submit();">
+                        <label class="custom-control-label" for="1week">1 week</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" type="radio" name="availability" id="2weeks"
+                               value="2weeks" th:checked="${apprenticesdto.availability == '2weeks'}"
+                               onclick="this.form.submit();">
+                        <label class="custom-control-label" for="2weeks">2 weeks</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" type="radio" name="availability" id="anytime"
+                               value="anytime" th:checked="${apprenticesdto.availability == 'anytime'}"
+                               onclick="this.form.submit();">
+                        <label class="custom-control-label" for="anytime">Any time</label>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a class="btn btn-primary" role="button" data-toggle="collapse" href="#cohorts"
+                   aria-expanded="false" aria-controls="collapseExample">
+                    Cohort
+                </a>
+                <div class="collapse" id="cohorts" th:classappend="${apprenticesdto.cohorts != null} ? show : hide">
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" name="cohort" id="alopex" value="alopex"
+                               th:checked="${apprenticesdto.cohorts != null &&
+                                        #arrays.contains(apprenticesdto.cohorts, 'alopex')}"
+                               onclick="this.form.submit();">
+                        <label class="custom-control-label" for="alopex">Alopex</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" name="cohort" id="fulvipes" value="fulvipes"
+                               th:checked="${apprenticesdto.cohorts != null &&
+                                        #arrays.contains(apprenticesdto.cohorts, 'fulvipes')}"
+                               onclick="this.form.submit();">
+                        <label class="custom-control-label" for="fulvipes">Fulvipes</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" name="cohort" id="macrotis" value="macrotis"
+                               th:checked="${apprenticesdto.cohorts != null &&
+                                        #arrays.contains(apprenticesdto.cohorts, 'macrotis')}"
+                               onclick="this.form.submit();">
+                        <label class="custom-control-label" for="macrotis">Macrotis</label>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <a class="btn btn-primary" role="button" data-toggle="collapse" href="#technologies"
+                   aria-expanded="true" aria-controls="collapseExample">
+                    Technology
+                </a>
+                <div class="collapse" id="technologies" th:classappend="${apprenticesdto.technologies != null} ? show : hide">
+                    <div th:each="technology : ${technologies}">
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" name="technology"
+                                   th:id="${technology.name}" th:value="${technology.name}"
+                                   th:checked="${apprenticesdto.technologies != null &&
+                                   #arrays.contains(apprenticesdto.technologies, technology.name)}"
+                                   onclick="this.form.submit();">
+                            <label class="custom-control-label" th:for="${technology.name}" th:text="${technology.name}">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+<div class="apprentice-container">
+    <div th:each="apprentice : ${apprenticesdto.apprentices}">
+        <div th:replace="fragments :: apprenticeTile(
+        apprentice=${apprentice},
+        currentUser=${currentUser})"></div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+</html>

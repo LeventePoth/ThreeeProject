@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
+</head>
+<body>
+<div class="apprentice-ticket" th:fragment="apprenticeTile(apprentice, currentUser)">
+    <p class="apprentice-name" th:text="${apprentice.firstName}+' '+${apprentice.lastName}"></p>
+    <form action="/apprentices/addFavourite" method="post" class="apprentice-name">
+        <input type="hidden" name="id" th:value="${apprentice.id}">
+        <button class="star" th:if="${currentUser.favouriteApprentices.contains(apprentice)}" type="submit"><i class="fas fa-star"></i></button>
+        <button class="star" th:unless="${currentUser.favouriteApprentices.contains(apprentice)}" type="submit"><i class="far fa-star"></i></button>
+    </form>
+    <div class="apprentice-description">
+        <div class="avatar-container">
+            <img class="avatar-img" th:src="${apprentice.profilePicUrl}">
+        </div>
+
+        <div class="apprentice-data-container">
+            <span class="language spokenlanguage" th:each="language : ${apprentice.spokenLanguages}" th:text="${language.name}"></span>
+            <div class="data-icon">
+                <img src="location.png">
+                <p class="apprentice-data" th:text="${apprentice.location}"></p>
+            </div>
+            <div class="data-icon">
+                <img src="calendar.png">
+                <p class="apprentice-data" th:text="${#dates.format(apprentice.availability,'MM-dd-yyyy')}"></p>
+            </div>
+            <p th:text="${apprentice.cohort}"></p>
+        </div>
+        <div class="apprentice-languages-container">
+            <span class="language technology" th:each="technology : ${apprentice.technologies}" th:text="${technology.name}"></span>
+        </div>
+    </div>
+</div>
+
+<div class="row" th:fragment="foodTile(food)">
+    <div class="menu-item">
+        <h3 class="menu-title" th:text="${food.foodName}+' '+${food.foodType}"></h3>
+        <p class="menu-about" th:text="${food.ingredients}"></p>
+
+        <div class="menu-system">
+            <div class="half">
+                <p class="per-head">
+                    <span><i class="fa fa-user"></i></span>1:1
+                </p>
+            </div>
+            <div class="half">
+                <p class="price" th:text="${food.price}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<header th:fragment="header(user)">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="logo">
+            <img class="header-img" src="/greenfox.png">
+            <a class="navbar-brand"> devma </a>
+        </div>
+        <div  class="collapse navbar-collapse" id="navbarColor03"></div>
+        <div class="user-profile-container">
+            <img class="user-img" th:src="${user.profilePicUrl}">
+            <div class="dropdown">
+                <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle" th:text="${user.firstName} + ' ' + ${user.lastName}"><span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a class="element" href="/apprentices">Apprentices</a></li>
+                    <li th:classappend="${user.administrator} ? useroption : hideoption"><a class="element" href="/admin/profile/partner_management">Partner Management</a></li>
+                    <li th:classappend="${user.administrator} ? useroption : hideoption"><a class="element" href="/apprentices/new">Add apprentice</a></li>
+                    <li><a class="element" href="/logout">Log out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+</html>

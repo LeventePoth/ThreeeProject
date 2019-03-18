@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="kosar-ticket" th:fragment="kosarTile(kosarItem)">
+                <tr>
+                    <th style="width: 112px" th:text="${kosarItem.foodName}"></th>
+                    <th style="width: 57px" th:text="${kosarItem.bag}">db</th>
+                    <th style="width: 38px">db</th>
+                    <form action="/rendeles/modal" method="post" class="modalozas">
+                        <input type="hidden" name="totalAmount" th:value="${kosarItem.bag}">
+                        <td><button style="padding: 6px 6px;" type="submit" class="btn btn-primary btn-sm">
+                        </button></td>
+                    </form>
+                </tr>
+                <tr>
+                    <th style="width: 112px" th:text="${kosarItem.foodType}"></th>
+                    <th style="width: 57px" th:text="${kosarItem.price}"></th>
+                    <th style="width: 38px">Ft</th>
+                    <form action="/rendeles/modal" method="post" class="modalozas">
+                        <input type="hidden" name="totalAmount" th:value="${kosarItem.price}">
+                        <td><button style="padding: 6px 6px;" type="submit" class="btn btn-primary btn-sm">
+                        </button></td>
+                    </form>
+                </tr>
+</div>
+</body>
+</html>
