@@ -239,11 +239,11 @@ input.empty, textarea.empty {
 
 .custom-navbar-default
 {
-	background-color: #8bc34a;
+	background-color: #ffffff;
 	border: 0px;
 	margin: 0px;
 	border-radius: 0px;
-	color: #5c9233;
+	color: #000000;
 	padding: 0px 0px;
 	box-shadow: 0px 2px 7px #000; /*rgb(139, 195, 74)*/
 }
@@ -266,11 +266,11 @@ input.empty, textarea.empty {
 
 .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover
 {
-	color: #5c9233;
+	color: #000000;
 }
 .navbar-default .navbar-nav>li>a
 {
-	color: #5c9233;
+	color: #000000;
 	text-transform: uppercase;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 400;
@@ -282,20 +282,20 @@ input.empty, textarea.empty {
 }
 .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover
 {
-	color: #fff;
+	color: rgba(173, 0, 0, 0.568);
 }
 .navbar-default .navbar-toggle
 {
-	border-color: #fff;
+	border-color: #000;
 }
 .navbar-toggle
 {
-	color: #fff;
+	color: #000;
 	border-radius: 0px;
 }
 .navbar-default .navbar-toggle .icon-bar
 {
-	background-color: #fff;
+	background-color: #000;
 }
 .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover
 {
@@ -304,7 +304,7 @@ input.empty, textarea.empty {
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
 	background-color: transparent;
-	color: #fff;
+	color: rgba(173, 0, 0, 0.568);
 }
 
 .navbar-brand {
@@ -313,8 +313,8 @@ input.empty, textarea.empty {
 }
 
 .navbar-default .navbar-collapse {
-	border-color: #669D38;
-	background-color: #8BC34A;
+	border-color: #fff;
+	background-color: #fff;
 }
 
 /*-----------------------------------------------
@@ -414,7 +414,7 @@ nav.shrink .navbar-toggle {
 	opacity: 1;
 	margin: 0px;
 	transition: all .4s;
-	background: #8bc34a;
+	background: rgba(173, 0, 0, 0.377);
 	color: #fff;
 }
 .owl-theme .owl-controls .owl-buttons div:hover
